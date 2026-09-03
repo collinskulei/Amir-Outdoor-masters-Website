@@ -1,26 +1,193 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-heading);
+
+  /* Brand: forest green (structural) */
+  --color-green-50: #f3f8ee;
+  --color-green-100: #e3efd6;
+  --color-green-200: #c8e0b0;
+  --color-green-300: #a4cb80;
+  --color-green-400: #83b459;
+  --color-green-500: #679c3f;
+  --color-green-600: #4f7c30;
+  --color-green-700: #3e6227;
+  --color-green-800: #334f22;
+  --color-green-900: #2b421f;
+  --color-green-950: #142213;
+
+  /* Brand: deep pine (dark surfaces — hero, footer, header-on-scroll) */
+  --color-pine-50: #eef5f1;
+  --color-pine-100: #d4e6db;
+  --color-pine-200: #a9cdb8;
+  --color-pine-500: #2f6650;
+  --color-pine-700: #1c4636;
+  --color-pine-800: #163829;
+  --color-pine-900: #112c20;
+  --color-pine-950: #0a1b14;
+
+  /* Accent: clay/terracotta (CTAs, highlights — mulch & paver tones) */
+  --color-clay-50: #fbf3ec;
+  --color-clay-100: #f5e2cf;
+  --color-clay-300: #e6b686;
+  --color-clay-400: #d99a5c;
+  --color-clay-500: #c67f3c;
+  --color-clay-600: #a8652d;
+  --color-clay-700: #854f25;
+  --color-clay-800: #603a1c;
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --background: #ffffff;
+  --foreground: #1a2118;
+  --card: #ffffff;
+  --card-foreground: #1a2118;
+  --popover: #ffffff;
+  --popover-foreground: #1a2118;
+  --primary: var(--color-green-700);
+  --primary-foreground: #ffffff;
+  --secondary: var(--color-green-50);
+  --secondary-foreground: var(--color-green-900);
+  --muted: #f3f4f1;
+  --muted-foreground: #5c655a;
+  --accent: var(--color-clay-500);
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: #e3e6df;
+  --input: #e3e6df;
+  --ring: var(--color-green-500);
+  --chart-1: var(--color-green-500);
+  --chart-2: var(--color-clay-500);
+  --chart-3: var(--color-pine-500);
+  --chart-4: var(--color-green-300);
+  --chart-5: var(--color-clay-300);
+  --radius: 0.625rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--color-pine-900);
+  --sidebar-primary: var(--color-green-700);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--color-green-50);
+  --sidebar-accent-foreground: var(--color-green-900);
+  --sidebar-border: #e3e6df;
+  --sidebar-ring: var(--color-green-500);
+}
+
+.dark {
+  --background: var(--color-pine-950);
+  --foreground: #eef2ec;
+  --card: var(--color-pine-900);
+  --card-foreground: #eef2ec;
+  --popover: var(--color-pine-900);
+  --popover-foreground: #eef2ec;
+  --primary: var(--color-green-500);
+  --primary-foreground: var(--color-pine-950);
+  --secondary: var(--color-pine-800);
+  --secondary-foreground: #eef2ec;
+  --muted: var(--color-pine-800);
+  --muted-foreground: var(--color-pine-200);
+  --accent: var(--color-clay-500);
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: color-mix(in oklab, white 12%, transparent);
+  --input: color-mix(in oklab, white 15%, transparent);
+  --ring: var(--color-green-400);
+  --chart-1: var(--color-green-400);
+  --chart-2: var(--color-clay-400);
+  --chart-3: var(--color-pine-200);
+  --chart-4: var(--color-green-300);
+  --chart-5: var(--color-clay-300);
+  --sidebar: var(--color-pine-900);
+  --sidebar-foreground: #eef2ec;
+  --sidebar-primary: var(--color-green-500);
+  --sidebar-primary-foreground: var(--color-pine-950);
+  --sidebar-accent: var(--color-pine-800);
+  --sidebar-accent-foreground: #eef2ec;
+  --sidebar-border: color-mix(in oklab, white 12%, transparent);
+  --sidebar-ring: var(--color-green-400);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-heading;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  /* Primary CTA treatment: flat clay fill, no glow — just a firm hover darken + lift. */
+  .btn-clay {
+    @apply bg-clay-500 text-white transition-colors duration-200 hover:bg-clay-600;
+  }
+
+  /* Accent underline used beneath eyebrow/section titles. */
+  .clay-line {
+    @apply relative inline-block after:absolute after:-bottom-2 after:left-0 after:h-[3px] after:w-10 after:rounded-full after:bg-clay-500;
+  }
+
+  /* Subtle diagonal texture for placeholder hero/CTA surfaces before real photography is uploaded. */
+  .bg-field-pattern {
+    background-image: repeating-linear-gradient(
+      135deg,
+      color-mix(in oklab, white 6%, transparent) 0px,
+      color-mix(in oklab, white 6%, transparent) 2px,
+      transparent 2px,
+      transparent 14px
+    );
+  }
 }
