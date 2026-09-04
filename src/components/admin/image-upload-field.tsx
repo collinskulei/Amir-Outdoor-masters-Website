@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useTransition } from "react";
-import Image from "next/image";
 import { ImagePlus, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -51,7 +50,7 @@ export function ImageUploadField({
       >
         {value ? (
           <>
-            <Image src={value} alt={label} fill className="object-cover" />
+            <img src={value} alt={label} className="absolute inset-0 h-full w-full object-cover" />
             <button
               type="button"
               onClick={() => onChange(null)}

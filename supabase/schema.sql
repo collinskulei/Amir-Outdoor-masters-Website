@@ -4,8 +4,11 @@
 create extension if not exists "pgcrypto";
 
 -- ---------------------------------------------------------------------------
--- site_settings — singleton row that drives header/footer/hero content and
--- the uploadable logo + hero background images.
+-- site_settings — singleton row that drives header/footer/about content and
+-- the uploadable logo. Hero slideshow images are NOT stored here — they're
+-- plain files under storage media/hero/desktop and media/hero/mobile, listed
+-- at request time (see src/lib/data/hero-images.ts), so the admin can add,
+-- remove, or reorder (by filename) any number of slides without a migration.
 -- ---------------------------------------------------------------------------
 create table if not exists site_settings (
   id smallint primary key default 1,
@@ -28,8 +31,6 @@ create table if not exists site_settings (
   instagram_url text,
   logo_url text,
   favicon_url text,
-  hero_desktop_url text,
-  hero_mobile_url text,
   about_blurb text,
   map_embed_url text,
   updated_at timestamptz not null default now(),

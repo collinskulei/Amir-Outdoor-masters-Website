@@ -1,43 +1,71 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/site/container";
 
+const SLIDE_INTERVAL_MS = 6500;
+
 export function HeroSection({
   tagline,
-  heroDesktopUrl,
-  heroMobileUrl,
+  desktopImages,
+  mobileImages,
 }: {
   tagline?: string | null;
-  heroDesktopUrl?: string | null;
-  heroMobileUrl?: string | null;
+  desktopImages: string[];
+  mobileImages: string[];
 }) {
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const check = () => setIsMobileViewport(window.innerWidth < 768 || window.innerHeight > window.innerWidth);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const images = isMobileViewport && mobileImages.length > 0 ? mobileImages : desktopImages;
+
+  useEffect(() => {
+    setIndex(0);
+  }, [images.length]);
+
+  useEffect(() => {
+    if (images.length < 2) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, SLIDE_INTERVAL_MS);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
   return (
     <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-pine-950">
-      {/* Background: real photo when uploaded, otherwise a designed gradient */}
       <div className="absolute inset-0">
-        {heroDesktopUrl ? (
-          <Image
-            src={heroDesktopUrl}
-            alt=""
-            fill
-            priority
-            className="hidden object-cover md:block"
-            sizes="100vw"
-          />
+        {images.length > 0 ? (
+          <AnimatePresence>
+            <motion.div
+              key={images[index]}
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.4, ease: "easeInOut" }}
+            >
+              <Image src={images[index]} alt="" fill priority className="object-cover" sizes="100vw" />
+            </motion.div>
+          </AnimatePresence>
         ) : (
-          <div className="bg-field-pattern hidden h-full w-full bg-gradient-to-br from-pine-900 via-pine-950 to-green-950 md:block" />
+          <div className="bg-field-pattern h-full w-full bg-gradient-to-br from-pine-900 via-pine-950 to-green-950" />
         )}
-        {heroMobileUrl ? (
-          <Image src={heroMobileUrl} alt="" fill priority className="object-cover md:hidden" sizes="100vw" />
-        ) : (
-          <div className="bg-field-pattern h-full w-full bg-gradient-to-b from-pine-900 via-pine-950 to-green-950 md:hidden" />
-        )}
-        <div className="absolute inset-0 bg-gradient-to-b from-pine-950/70 via-pine-950/40 to-pine-950/80" />
+        {/* Flat black scrim for text legibility over any photo. */}
+        <div className="absolute inset-0 bg-black/50" />
       </div>
 
       <Container className="relative z-10 py-32">
@@ -74,6 +102,21 @@ export function HeroSection({
           </div>
         </motion.div>
       </Container>
+
+      {images.length > 1 && (
+        <div className="absolute bottom-8 right-8 z-10 hidden gap-2 sm:flex">
+          {images.map((src, i) => (
+            <button
+              key={src}
+              aria-label={`Show slide ${i + 1}`}
+              onClick={() => setIndex(i)}
+              className={`h-1.5 rounded-full transition-all ${
+                i === index ? "w-6 bg-white" : "w-1.5 bg-white/40 hover:bg-white/70"
+              }`}
+            />
+          ))}
+        </div>
+      )}
 
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70"

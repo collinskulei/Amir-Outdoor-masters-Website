@@ -21,7 +21,7 @@ export function Logo({
   if (logoUrl) {
     return (
       <span className={cn("relative block h-10 w-40", className)}>
-        <Image src={logoUrl} alt={siteName} fill className="object-contain object-left" priority />
+        <Image src={logoUrl} alt={siteName} fill sizes="160px" className="object-contain object-left" priority />
       </span>
     );
   }

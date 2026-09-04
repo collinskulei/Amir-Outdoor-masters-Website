@@ -16,8 +16,6 @@ export type SettingsInput = {
   instagram_url: string;
   logo_url: string | null;
   favicon_url: string | null;
-  hero_desktop_url: string | null;
-  hero_mobile_url: string | null;
   about_blurb: string;
   map_embed_url: string;
 };

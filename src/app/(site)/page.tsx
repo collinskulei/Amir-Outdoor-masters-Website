@@ -8,21 +8,23 @@ import { getSiteSettings } from "@/lib/data/settings";
 import { getFeaturedServices } from "@/lib/data/services";
 import { getPortfolioItems } from "@/lib/data/portfolio";
 import { getPublishedTestimonials } from "@/lib/data/testimonials";
+import { getHeroImages } from "@/lib/data/hero-images";
 
 export default async function HomePage() {
-  const [settings, featuredServices, portfolioItems, testimonials] = await Promise.all([
+  const [settings, featuredServices, portfolioItems, testimonials, heroImages] = await Promise.all([
     getSiteSettings(),
     getFeaturedServices(6),
     getPortfolioItems(8),
     getPublishedTestimonials(),
+    getHeroImages(),
   ]);
 
   return (
     <>
       <HeroSection
         tagline={settings.tagline}
-        heroDesktopUrl={settings.hero_desktop_url}
-        heroMobileUrl={settings.hero_mobile_url}
+        desktopImages={heroImages.desktop}
+        mobileImages={heroImages.mobile}
       />
       <ServicesGridSection services={featuredServices} />
       <WhyChooseUs />

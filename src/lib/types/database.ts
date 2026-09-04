@@ -24,8 +24,6 @@ export interface SiteSettingsRow {
   instagram_url: string | null;
   logo_url: string | null;
   favicon_url: string | null;
-  hero_desktop_url: string | null;
-  hero_mobile_url: string | null;
   about_blurb: string | null;
   map_embed_url: string | null;
   updated_at: string;

@@ -10,11 +10,13 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { ImageUploadField } from "@/components/admin/image-upload-field";
+import { HeroImageManager } from "@/components/admin/hero-image-manager";
 import { updateSiteSettings, type SettingsInput } from "@/lib/actions/settings";
 import { defaultBusinessHours } from "@/lib/placeholder-content";
 import type { SiteSettingsRow } from "@/lib/types/database";
+import type { HeroImages } from "@/lib/data/hero-images";
 
-export function SettingsForm({ settings }: { settings: SiteSettingsRow }) {
+export function SettingsForm({ settings, heroImages }: { settings: SiteSettingsRow; heroImages: HeroImages }) {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const [form, setForm] = useState<SettingsInput>({
@@ -29,8 +31,6 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow }) {
     instagram_url: settings.instagram_url ?? "",
     logo_url: settings.logo_url,
     favicon_url: settings.favicon_url,
-    hero_desktop_url: settings.hero_desktop_url,
-    hero_mobile_url: settings.hero_mobile_url,
     about_blurb: settings.about_blurb ?? "",
     map_embed_url: settings.map_embed_url ?? "",
   });
@@ -70,24 +70,23 @@ export function SettingsForm({ settings }: { settings: SiteSettingsRow }) {
       </section>
 
       <section className="rounded-2xl border border-border bg-card p-6">
-        <h2 className="font-bold text-pine-950">Homepage Hero Background</h2>
+        <h2 className="font-bold text-pine-950">Homepage Hero Slideshow</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Upload separate images for large screens and small screens — until uploaded, a designed
-          placeholder gradient is shown instead.
+          Add as many slides as you like for large and small screens — the homepage
+          auto-advances through them behind a dark overlay. Until at least one is added, a
+          designed placeholder gradient is shown instead.
         </p>
-        <div className="mt-5 grid grid-cols-1 gap-6 sm:grid-cols-2">
-          <ImageUploadField
-            label="Desktop background (wide, e.g. 1920×1080)"
-            folder="hero"
-            value={form.hero_desktop_url}
-            onChange={(v) => update("hero_desktop_url", v)}
+        <div className="mt-5 grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <HeroImageManager
+            slot="desktop"
+            label="Desktop slides (wide, e.g. 1920×1080)"
+            images={heroImages.desktop}
             aspect="aspect-video"
           />
-          <ImageUploadField
-            label="Mobile background (tall, e.g. 1080×1920)"
-            folder="hero"
-            value={form.hero_mobile_url}
-            onChange={(v) => update("hero_mobile_url", v)}
+          <HeroImageManager
+            slot="mobile"
+            label="Mobile slides (tall, e.g. 1080×1920)"
+            images={heroImages.mobile}
             aspect="aspect-[9/16]"
           />
         </div>

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { AdminPageHeader } from "@/components/admin/page-header";
 import { PortfolioDialog } from "@/components/admin/portfolio-dialog";
 import { ConfirmDeleteButton } from "@/components/admin/confirm-delete-button";
@@ -29,7 +28,10 @@ export default async function AdminPortfolioPage() {
           {items.map((item) => (
             <div key={item.id} className="group overflow-hidden rounded-xl border border-border bg-card">
               <div className="relative aspect-square">
-                <Image src={item.image_url} alt={item.title} fill className="object-cover" />
+                {/* Plain img (not next/image): admin-only preview, and routing
+                    dozens of these through the optimizer at once was enough
+                    concurrent load to occasionally time out in dev. */}
+                <img src={item.image_url} alt={item.title} className="absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute inset-0 flex items-start justify-end gap-1 bg-black/0 p-2 opacity-0 transition-opacity group-hover:bg-black/20 group-hover:opacity-100">
                   <PortfolioDialog categories={categories} services={services} item={item} />
                   <ConfirmDeleteButton itemLabel={item.title} onDelete={() => deletePortfolioItem(item.id)} />

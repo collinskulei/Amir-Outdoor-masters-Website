@@ -36,8 +36,6 @@ export const defaultSiteSettings: SiteSettingsRow = {
   instagram_url: null,
   logo_url: null,
   favicon_url: null,
-  hero_desktop_url: null,
-  hero_mobile_url: null,
   about_blurb:
     "For over a decade, Amir Outdoor Masters has helped homeowners and businesses turn ordinary yards into outdoor spaces they never want to leave. From the first consultation to the final walkthrough, our crews bring the same standard: honest pricing, clean work, and craftsmanship that holds up season after season.",
   map_embed_url: null,
