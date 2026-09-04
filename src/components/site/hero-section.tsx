@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, ShieldCheck } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/site/container";
 
@@ -75,11 +75,7 @@ export function HeroSection({
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-2xl"
         >
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-green-50 uppercase backdrop-blur-sm">
-            <ShieldCheck className="h-3.5 w-3.5" />
-            Licensed & Insured Outdoor Crews
-          </span>
-          <h1 className="mt-6 text-4xl leading-[1.08] font-extrabold text-white sm:text-5xl lg:text-6xl">
+          <h1 className="text-4xl leading-[1.08] font-extrabold text-white sm:text-5xl lg:text-6xl">
             Outdoor spaces built for how you actually live
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-green-50/90">
