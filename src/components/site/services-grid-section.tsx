@@ -13,7 +13,7 @@ export function ServicesGridSection({ services }: { services: ServiceRow[] }) {
         <SectionHeading
           eyebrow="What We Do"
           title="Full-service outdoor care, under one crew"
-          description="From weekly maintenance to full design-build projects, every service is handled by our own trained teams — no subcontractors passing the job around."
+          description="From weekly maintenance to full design-build projects, every service is handled by our own trained teams, with no subcontractors passing the job around."
         />
         <StaggerGrid className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (

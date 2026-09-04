@@ -20,7 +20,7 @@ export default async function PortfolioPage() {
       <PageHero
         eyebrow="Portfolio"
         title="Projects our crews are proud of"
-        description="A running gallery of completed work — new projects are added as they wrap up."
+        description="A running gallery of completed work. New projects are added as they wrap up."
       />
       <section className="py-20 sm:py-24">
         <Container>
@@ -39,7 +39,7 @@ export default async function PortfolioPage() {
             <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-muted/40 py-24 text-center">
               <ImageIcon className="h-12 w-12 text-muted-foreground/60" strokeWidth={1.5} />
               <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-                Our project gallery is being updated — check back soon to see recent work.
+                Our project gallery is being updated. Check back soon to see recent work.
               </p>
             </div>
           )}

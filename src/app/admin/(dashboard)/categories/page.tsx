@@ -37,7 +37,7 @@ export default async function AdminCategoriesPage() {
             {categories.length === 0 && (
               <TableRow>
                 <TableCell colSpan={3} className="py-10 text-center text-muted-foreground">
-                  No categories yet — add your first one above.
+                  No categories yet. Add your first one above.
                 </TableCell>
               </TableRow>
             )}

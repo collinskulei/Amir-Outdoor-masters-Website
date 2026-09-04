@@ -13,7 +13,7 @@ export function PortfolioPreviewSection({ items }: { items: PortfolioItemRow[] }
         <SectionHeading
           eyebrow="Recent Work"
           title="See the transformation"
-          description="A look at projects our crews have completed recently — browse the full portfolio for more."
+          description="A look at projects our crews have completed recently. Browse the full portfolio for more."
         />
 
         {items.length > 0 ? (
@@ -28,7 +28,7 @@ export function PortfolioPreviewSection({ items }: { items: PortfolioItemRow[] }
           <div className="mt-14 flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-muted/40 py-20 text-center">
             <ImageIcon className="h-10 w-10 text-muted-foreground/60" strokeWidth={1.5} />
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-              Project photos are on their way — check back soon, or browse our services in the
+              Project photos are on their way. Check back soon, or browse our services in the
               meantime.
             </p>
           </div>

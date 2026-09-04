@@ -49,5 +49,5 @@ export async function submitLead(
     return { status: "error", message: "Something went wrong sending your message. Please try again." };
   }
 
-  return { status: "success", message: "Thanks — we'll get back to you within one business day." };
+  return { status: "success", message: "Thanks! We'll get back to you within one business day." };
 }

@@ -21,7 +21,7 @@ export default async function AdminPortfolioPage() {
 
       {items.length === 0 ? (
         <div className="rounded-2xl border border-dashed border-border bg-card py-16 text-center text-muted-foreground">
-          No projects yet — add your first one above.
+          No projects yet. Add your first one above.
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">

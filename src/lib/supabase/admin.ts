@@ -2,7 +2,7 @@ import { createClient as createSupabaseClient } from "@supabase/supabase-js";
 import { supabaseUrl } from "./config";
 
 /**
- * Service-role Supabase client. Bypasses Row Level Security — server-only,
+ * Service-role Supabase client. Bypasses Row Level Security, server-only,
  * used for admin storage uploads. Never import this from a Client Component.
  */
 export function createAdminClient() {

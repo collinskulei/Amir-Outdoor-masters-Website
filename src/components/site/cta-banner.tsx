@@ -5,7 +5,7 @@ import { AnimatedSection } from "@/components/motion/animated-section";
 
 export function CtaBanner({
   title = "Ready to see what your yard could look like?",
-  description = "Get a no-pressure quote from a real crew lead — most estimates are scheduled within a week.",
+  description = "Get a no-pressure quote from a real crew lead. Most estimates are scheduled within a week.",
 }: {
   title?: string;
   description?: string;

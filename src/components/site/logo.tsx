@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 /**
  * Renders the uploaded logo (Admin → Settings) when available. Until then,
  * falls back to a text lockup that echoes the brand mark: green wordmark,
- * dark pine trees, on a green name-bar — swap the moment a logo is uploaded.
+ * dark pine trees, on a green name-bar. Swap the moment a logo is uploaded.
  */
 export function Logo({
   logoUrl,

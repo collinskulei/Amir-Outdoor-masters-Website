@@ -20,7 +20,7 @@ export default async function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Let's talk about your property"
-        description="Questions, quote requests, or just want to say hi — reach out and a real person will get back to you."
+        description="Questions, quote requests, or just want to say hi. Reach out and a real person will get back to you."
       />
       <section className="py-20 sm:py-24">
         <Container className="grid grid-cols-1 gap-14 lg:grid-cols-5">

@@ -36,7 +36,7 @@ export default async function AdminServicesPage() {
             {services.map((service) => (
               <TableRow key={service.id}>
                 <TableCell className="font-medium text-pine-950">{service.name}</TableCell>
-                <TableCell className="text-muted-foreground">{service.category?.name ?? "—"}</TableCell>
+                <TableCell className="text-muted-foreground">{service.category?.name ?? "-"}</TableCell>
                 <TableCell>
                   {service.featured && <Star className="h-4 w-4 fill-clay-500 text-clay-500" />}
                 </TableCell>
@@ -48,7 +48,7 @@ export default async function AdminServicesPage() {
             {services.length === 0 && (
               <TableRow>
                 <TableCell colSpan={4} className="py-10 text-center text-muted-foreground">
-                  No services yet — add your first one.
+                  No services yet. Add your first one.
                 </TableCell>
               </TableRow>
             )}

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 /**
  * Photo tile used across services, portfolio, and testimonials: zooms in
  * slightly as it scrolls into view, then offers a subtle hover zoom on top.
- * No glow/shadow effects — just motion.
+ * No glow/shadow effects, just motion.
  */
 export function ZoomImage({
   src,

@@ -1,6 +1,6 @@
 // Hand-written to match supabase/schema.sql. If you introspect a live
 // project with `supabase gen types typescript`, this file can be replaced
-// by the generated output — the app only relies on the shapes below.
+// by the generated output. The app only relies on the shapes below.
 
 export type LeadStatus = "new" | "contacted" | "closed";
 export type BookingStatus = "requested" | "confirmed" | "declined" | "completed";

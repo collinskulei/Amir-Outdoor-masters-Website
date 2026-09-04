@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 const VALUES = [
   { icon: ShieldCheck, title: "Reliability", description: "We show up on schedule and communicate clearly if anything changes." },
-  { icon: Award, title: "Craftsmanship", description: "Every detail — from grading to plant spacing — is done to hold up for years." },
+  { icon: Award, title: "Craftsmanship", description: "Every detail, from grading to plant spacing, is done to hold up for years." },
   { icon: HeartHandshake, title: "Honesty", description: "Straightforward pricing and recommendations, no upselling you don't need." },
   { icon: Leaf, title: "Care for the Land", description: "Practices that keep soil, plants, and water use healthy long-term." },
 ];

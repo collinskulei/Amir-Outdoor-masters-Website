@@ -8,7 +8,7 @@ import type {
   TestimonialRow,
 } from "@/lib/types/database";
 
-// Admin views must reflect exactly what's in the database — never fall back
+// Admin views must reflect exactly what's in the database. Never fall back
 // to placeholder content, unlike the public-facing lib/data/* helpers.
 
 export async function getAdminCategories(): Promise<ServiceCategoryRow[]> {

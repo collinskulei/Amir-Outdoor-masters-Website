@@ -10,7 +10,7 @@ import { getCategoriesWithServices } from "@/lib/data/services";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Lawn care, landscape design, hardscaping, irrigation, seasonal cleanup, and tree care — all from one crew.",
+    "Lawn care, landscape design, hardscaping, irrigation, seasonal cleanup, and tree care, all from one crew.",
 };
 
 export default async function ServicesPage() {

@@ -24,7 +24,7 @@
   --color-green-900: #2b421f;
   --color-green-950: #142213;
 
-  /* Brand: deep pine (dark surfaces — hero, footer, header-on-scroll) */
+  /* Brand: deep pine (dark surfaces: hero, footer, header-on-scroll) */
   --color-pine-50: #eef5f1;
   --color-pine-100: #d4e6db;
   --color-pine-200: #a9cdb8;
@@ -34,7 +34,7 @@
   --color-pine-900: #112c20;
   --color-pine-950: #0a1b14;
 
-  /* Accent: clay/terracotta (CTAs, highlights — mulch & paver tones) */
+  /* Accent: clay/terracotta (CTAs, highlights: mulch & paver tones) */
   --color-clay-50: #fbf3ec;
   --color-clay-100: #f5e2cf;
   --color-clay-300: #e6b686;
@@ -170,7 +170,7 @@
 }
 
 @layer utilities {
-  /* Primary CTA treatment: flat clay fill, no glow — just a firm hover darken + lift. */
+  /* Primary CTA treatment: flat clay fill, no glow, just a firm hover darken + lift. */
   .btn-clay {
     @apply bg-clay-500 text-white transition-colors duration-200 hover:bg-clay-600;
   }

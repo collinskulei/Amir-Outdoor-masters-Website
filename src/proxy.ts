@@ -9,7 +9,7 @@ export async function proxy(request: NextRequest) {
   const isLoginRoute = request.nextUrl.pathname === "/admin/login";
 
   if (!isSupabaseConfigured) {
-    // Nothing to protect against yet — let the admin pages themselves show
+    // Nothing to protect against yet, let the admin pages themselves show
     // a "connect Supabase" notice rather than redirect-looping.
     return response;
   }

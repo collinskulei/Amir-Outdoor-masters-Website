@@ -79,7 +79,7 @@ export function HeroSection({
             Outdoor spaces built for how you actually live
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-green-50/90">
-            {tagline ?? "Landscaping & Outdoor Living, Done Right"} — from weekly lawn care to
+            {tagline ?? "Landscaping & Outdoor Living, Done Right"}. From weekly lawn care to
             full hardscape builds, Amir Outdoor Masters handles it with one crew, start to finish.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">

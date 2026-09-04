@@ -12,7 +12,7 @@ const POINTS = [
   {
     icon: Users,
     title: "One Dedicated Crew",
-    description: "The same trained team follows your project or property — no rotating subcontractors.",
+    description: "The same trained team follows your project or property, with no rotating subcontractors.",
   },
   {
     icon: Clock,

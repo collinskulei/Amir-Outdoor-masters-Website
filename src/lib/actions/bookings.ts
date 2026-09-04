@@ -63,6 +63,6 @@ export async function submitBooking(
 
   return {
     status: "success",
-    message: "Request received — we'll reach out to confirm your visit shortly.",
+    message: "Request received! We'll reach out to confirm your visit shortly.",
   };
 }

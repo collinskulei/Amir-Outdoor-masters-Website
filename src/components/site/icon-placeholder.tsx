@@ -10,7 +10,7 @@ function resolveIcon(name?: string | null): LucideIcon {
 
 /**
  * Brand-colored placeholder tile shown wherever a photo hasn't been uploaded
- * yet (services, portfolio) — deliberately looks like a designed empty
+ * yet (services, portfolio). Deliberately looks like a designed empty
  * state, not a broken image.
  */
 export function IconPlaceholder({

@@ -72,7 +72,7 @@ export function SettingsForm({ settings, heroImages }: { settings: SiteSettingsR
       <section className="rounded-2xl border border-border bg-card p-6">
         <h2 className="font-bold text-pine-950">Homepage Hero Slideshow</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Add as many slides as you like for large and small screens — the homepage
+          Add as many slides as you like for large and small screens. The homepage
           auto-advances through them behind a dark overlay. Until at least one is added, a
           designed placeholder gradient is shown instead.
         </p>

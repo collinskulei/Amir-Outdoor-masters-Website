@@ -5,7 +5,7 @@ import { getAdminBookings, getAdminServices } from "@/lib/data/admin";
 
 export default async function AdminBookingsPage() {
   const [bookings, services] = await Promise.all([getAdminBookings(), getAdminServices()]);
-  const serviceName = (id: string | null) => services.find((s) => s.id === id)?.name ?? "—";
+  const serviceName = (id: string | null) => services.find((s) => s.id === id)?.name ?? "-";
 
   return (
     <div>
@@ -32,7 +32,7 @@ export default async function AdminBookingsPage() {
                 <TableCell className="text-muted-foreground">{serviceName(booking.service_id)}</TableCell>
                 <TableCell className="max-w-48 truncate text-muted-foreground">{booking.address}</TableCell>
                 <TableCell className="text-muted-foreground">
-                  {booking.preferred_date ? new Date(booking.preferred_date).toLocaleDateString() : "—"}
+                  {booking.preferred_date ? new Date(booking.preferred_date).toLocaleDateString() : "-"}
                 </TableCell>
                 <TableCell>
                   <BookingStatusSelect id={booking.id} status={booking.status} />
