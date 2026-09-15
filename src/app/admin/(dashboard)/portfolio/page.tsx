@@ -1,7 +1,6 @@
 import { AdminPageHeader } from "@/components/admin/page-header";
 import { PortfolioDialog } from "@/components/admin/portfolio-dialog";
-import { ConfirmDeleteButton } from "@/components/admin/confirm-delete-button";
-import { deletePortfolioItem } from "@/lib/actions/portfolio";
+import { PortfolioItemActions } from "@/components/admin/portfolio-item-actions";
 import { getAdminCategories, getAdminPortfolio, getAdminServices } from "@/lib/data/admin";
 
 export default async function AdminPortfolioPage() {
@@ -33,8 +32,7 @@ export default async function AdminPortfolioPage() {
                     concurrent load to occasionally time out in dev. */}
                 <img src={item.image_url} alt={item.title} className="absolute inset-0 h-full w-full object-cover" />
                 <div className="absolute inset-0 flex items-start justify-end gap-1 bg-black/0 p-2 opacity-0 transition-opacity group-hover:bg-black/20 group-hover:opacity-100">
-                  <PortfolioDialog categories={categories} services={services} item={item} />
-                  <ConfirmDeleteButton itemLabel={item.title} onDelete={() => deletePortfolioItem(item.id)} />
+                  <PortfolioItemActions item={item} categories={categories} services={services} />
                 </div>
               </div>
               <p className="truncate p-3 text-sm font-medium text-pine-950">{item.title}</p>
