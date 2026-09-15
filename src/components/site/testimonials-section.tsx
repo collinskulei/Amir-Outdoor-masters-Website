@@ -15,8 +15,8 @@ export function TestimonialsSection({ testimonials }: { testimonials: Testimonia
           title="Trusted by homeowners & property managers"
           dark
         />
-        <StaggerGrid className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-3">
-          {testimonials.slice(0, 3).map((testimonial) => (
+        <StaggerGrid className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {testimonials.slice(0, 4).map((testimonial) => (
             <StaggerItem
               key={testimonial.id}
               className="flex h-full flex-col rounded-2xl bg-pine-900 p-7"
@@ -32,7 +32,7 @@ export function TestimonialsSection({ testimonials }: { testimonials: Testimonia
               <div className="mt-6">
                 <p className="text-sm font-bold text-white">{testimonial.name}</p>
                 {testimonial.role_location && (
-                  <p className="text-xs text-pine-300">{testimonial.role_location}</p>
+                  <p className="text-xs text-pine-200">{testimonial.role_location}</p>
                 )}
               </div>
             </StaggerItem>
