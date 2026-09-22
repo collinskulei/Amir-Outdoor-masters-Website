@@ -118,7 +118,7 @@ export function Footer({
       </Container>
 
       <div className="border-t border-pine-800">
-        <Container className="flex flex-col items-center justify-between gap-3 py-6 text-xs text-pine-300 sm:flex-row">
+        <Container className="flex flex-col items-center justify-between gap-3 py-6 text-xs text-pine-200 sm:flex-row">
           <p>© {year} {settings.site_name}. All rights reserved.</p>
           <p>Built with care for outdoor spaces that last.</p>
         </Container>

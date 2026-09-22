@@ -143,7 +143,7 @@ export const placeholderServices: ServiceRow[] = placeholderCategories.flatMap((
 export const placeholderTestimonials: TestimonialRow[] = [
   {
     id: "t1",
-    name: "Dana R.",
+    name: "John Njoroge",
     role_location: "Homeowner",
     quote:
       "The crew transformed a drainage nightmare into the nicest part of our backyard. They showed up when they said they would and left the site spotless every day.",
@@ -154,7 +154,18 @@ export const placeholderTestimonials: TestimonialRow[] = [
   },
   {
     id: "t2",
-    name: "Marcus T.",
+    name: "Monicah Mumbi",
+    role_location: "Homeowner",
+    quote:
+      "Our new patio and fire pit is exactly what we pictured. The design process made it easy to see everything before a single stone was laid.",
+    rating: 5,
+    avatar_url: null,
+    published: true,
+    created_at: new Date(0).toISOString(),
+  },
+  {
+    id: "t3",
+    name: "Wilson Muthaura",
     role_location: "Property Manager",
     quote:
       "We switched three commercial properties over to Amir Outdoor Masters and haven't looked back. Communication is easy and the lawns have never looked better.",
@@ -164,11 +175,11 @@ export const placeholderTestimonials: TestimonialRow[] = [
     created_at: new Date(0).toISOString(),
   },
   {
-    id: "t3",
-    name: "Priya S.",
+    id: "t4",
+    name: "Kennedy Lusweti",
     role_location: "Homeowner",
     quote:
-      "Our new patio and fire pit is exactly what we pictured. The design process made it easy to see everything before a single stone was laid.",
+      "From the first consultation to the final walkthrough, everything was handled with honesty and care. The finished landscaping exceeded what we imagined.",
     rating: 5,
     avatar_url: null,
     published: true,
