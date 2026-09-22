@@ -97,6 +97,55 @@ export interface BookingRow {
   created_at: string;
 }
 
+export type BlogPostStatus = "draft" | "published";
+export type BlogSchemaType = "Article" | "BlogPosting" | "HowTo" | "FAQPage";
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface BlogCategoryRow {
+  id: string;
+  name: string;
+  slug: string;
+  sort_order: number;
+  created_at: string;
+}
+
+export interface BlogPostRow {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string | null;
+  content_html: string;
+  content_json: unknown;
+  cover_image_url: string | null;
+  category_id: string | null;
+  tags: string[];
+  author_name: string;
+  status: BlogPostStatus;
+  published_at: string | null;
+
+  focus_keyword: string | null;
+  secondary_keywords: string[];
+  meta_title: string | null;
+  meta_description: string | null;
+  canonical_url: string | null;
+
+  og_image_url: string | null;
+  schema_type: BlogSchemaType;
+  faq_items: FaqItem[];
+
+  seo_score: number;
+  readability_score: number;
+  word_count: number;
+  reading_time_minutes: number;
+
+  created_at: string;
+  updated_at: string;
+}
+
 type Table<Row> = { Row: Row; Insert: Partial<Row>; Update: Partial<Row>; Relationships: [] };
 
 export interface Database {
@@ -109,6 +158,8 @@ export interface Database {
       testimonials: Table<TestimonialRow>;
       leads: Table<LeadRow>;
       bookings: Table<BookingRow>;
+      blog_categories: Table<BlogCategoryRow>;
+      blog_posts: Table<BlogPostRow>;
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

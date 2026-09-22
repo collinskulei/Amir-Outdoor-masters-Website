@@ -126,6 +126,63 @@ create table if not exists bookings (
 );
 
 -- ---------------------------------------------------------------------------
+-- blog_categories
+-- ---------------------------------------------------------------------------
+create table if not exists blog_categories (
+  id uuid primary key default gen_random_uuid(),
+  name text not null,
+  slug text not null unique,
+  sort_order integer not null default 0,
+  created_at timestamptz not null default now()
+);
+
+-- ---------------------------------------------------------------------------
+-- blog_posts — written with the Tiptap editor in Admin → Blog. content_json
+-- is the editor's native doc (re-opened for editing); content_html is
+-- generated from it at save time and is what the public post page renders,
+-- so the public route never needs to load the editor. seo_score/
+-- readability_score are the last score the admin's SEO panel computed,
+-- stored only so the post list can show a badge without re-analyzing.
+-- ---------------------------------------------------------------------------
+create table if not exists blog_posts (
+  id uuid primary key default gen_random_uuid(),
+  title text not null default '',
+  slug text not null unique,
+  excerpt text,
+  content_html text not null default '',
+  content_json jsonb,
+  cover_image_url text,
+  category_id uuid references blog_categories (id) on delete set null,
+  tags text[] not null default '{}',
+  author_name text not null default 'Amir Outdoor Masters',
+  status text not null default 'draft' check (status in ('draft', 'published')),
+  published_at timestamptz,
+
+  -- SEO
+  focus_keyword text,
+  secondary_keywords text[] not null default '{}',
+  meta_title text,
+  meta_description text,
+  canonical_url text,
+
+  -- Social / AEO / GEO
+  og_image_url text,
+  schema_type text not null default 'Article' check (schema_type in ('Article', 'BlogPosting', 'HowTo', 'FAQPage')),
+  faq_items jsonb not null default '[]',
+
+  -- Cached analysis (recomputed live in the editor; persisted for list views)
+  seo_score smallint not null default 0,
+  readability_score smallint not null default 0,
+  word_count integer not null default 0,
+  reading_time_minutes smallint not null default 0,
+
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create index if not exists blog_posts_status_published_at_idx on blog_posts (status, published_at desc);
+
+-- ---------------------------------------------------------------------------
 -- Row Level Security
 -- ---------------------------------------------------------------------------
 alter table site_settings enable row level security;
@@ -135,6 +192,8 @@ alter table portfolio_items enable row level security;
 alter table testimonials enable row level security;
 alter table leads enable row level security;
 alter table bookings enable row level security;
+alter table blog_categories enable row level security;
+alter table blog_posts enable row level security;
 
 -- Public (anon) can read published marketing content.
 create policy "public read site_settings" on site_settings for select using (true);
@@ -142,6 +201,8 @@ create policy "public read service_categories" on service_categories for select 
 create policy "public read services" on services for select using (true);
 create policy "public read portfolio_items" on portfolio_items for select using (true);
 create policy "public read published testimonials" on testimonials for select using (published = true);
+create policy "public read blog_categories" on blog_categories for select using (true);
+create policy "public read published blog_posts" on blog_posts for select using (status = 'published');
 
 -- Public (anon) can create leads/bookings, but never read or edit them back.
 create policy "public insert leads" on leads for insert with check (true);
@@ -156,6 +217,8 @@ create policy "admin all portfolio_items" on portfolio_items for all using (auth
 create policy "admin all testimonials" on testimonials for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
 create policy "admin all leads" on leads for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
 create policy "admin all bookings" on bookings for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "admin all blog_categories" on blog_categories for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "admin all blog_posts" on blog_posts for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
 
 -- ---------------------------------------------------------------------------
 -- Storage — public "media" bucket for logo, hero backgrounds, service &

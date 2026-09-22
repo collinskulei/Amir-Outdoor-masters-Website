@@ -1,5 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import type {
+  BlogCategoryRow,
+  BlogPostRow,
   BookingRow,
   LeadRow,
   PortfolioItemRow,
@@ -64,4 +66,40 @@ export async function getAdminBookings(): Promise<BookingRow[]> {
   if (!supabase) return [];
   const { data } = await supabase.from("bookings").select("*").order("created_at", { ascending: false });
   return data ?? [];
+}
+
+export async function getAdminBlogCategories(): Promise<BlogCategoryRow[]> {
+  const supabase = await createClient();
+  if (!supabase) return [];
+  const { data } = await supabase.from("blog_categories").select("*").order("sort_order");
+  return data ?? [];
+}
+
+export async function getAdminPosts(): Promise<(BlogPostRow & { category: BlogCategoryRow | null })[]> {
+  const supabase = await createClient();
+  if (!supabase) return [];
+  const [{ data: posts }, { data: categories }] = await Promise.all([
+    supabase.from("blog_posts").select("*").order("updated_at", { ascending: false }),
+    supabase.from("blog_categories").select("*"),
+  ]);
+  return (posts ?? []).map((p) => ({
+    ...p,
+    category: categories?.find((c) => c.id === p.category_id) ?? null,
+  }));
+}
+
+export async function getAdminPostById(id: string): Promise<BlogPostRow | null> {
+  const supabase = await createClient();
+  if (!supabase) return null;
+  const { data } = await supabase.from("blog_posts").select("*").eq("id", id).maybeSingle();
+  return data;
+}
+
+export async function getOtherFocusKeywords(excludePostId?: string): Promise<string[]> {
+  const supabase = await createClient();
+  if (!supabase) return [];
+  let query = supabase.from("blog_posts").select("focus_keyword").not("focus_keyword", "is", null);
+  if (excludePostId) query = query.neq("id", excludePostId);
+  const { data } = await query;
+  return (data ?? []).map((r) => r.focus_keyword).filter((k): k is string => Boolean(k));
 }

@@ -13,7 +13,7 @@ const env = Object.fromEntries(
 
 const supabase = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY);
 
-for (const table of ["site_settings", "service_categories", "services", "portfolio_items", "testimonials", "leads", "bookings"]) {
+for (const table of ["site_settings", "service_categories", "services", "portfolio_items", "testimonials", "leads", "bookings", "blog_categories", "blog_posts"]) {
   const { error, count } = await supabase.from(table).select("*", { count: "exact", head: true });
   console.log(table, error ? `ERROR: ${error.message}` : `OK (${count} rows)`);
 }

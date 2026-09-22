@@ -77,6 +77,9 @@ export function Footer({
               <Link href="/portfolio" className="text-pine-200/90 transition-colors hover:text-white">Portfolio</Link>
             </li>
             <li>
+              <Link href="/blog" className="text-pine-200/90 transition-colors hover:text-white">Blog</Link>
+            </li>
+            <li>
               <Link href="/quote" className="text-pine-200/90 transition-colors hover:text-white">Get a Quote</Link>
             </li>
             <li>

@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
 import { getAllServices } from "@/lib/data/services";
+import { getPublishedPosts } from "@/lib/data/blog";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://amiroutdoormasters.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const services = await getAllServices();
+  const [services, posts] = await Promise.all([getAllServices(), getPublishedPosts()]);
 
-  const staticRoutes = ["", "/services", "/portfolio", "/about", "/contact", "/quote"].map((path) => ({
+  const staticRoutes = ["", "/services", "/portfolio", "/blog", "/about", "/contact", "/quote"].map((path) => ({
     url: `${BASE_URL}${path}`,
     lastModified: new Date(),
   }));
@@ -16,5 +17,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified: new Date(service.updated_at),
   }));
 
-  return [...staticRoutes, ...serviceRoutes];
+  const postRoutes = posts.map((post) => ({
+    url: `${BASE_URL}/blog/${post.slug}`,
+    lastModified: new Date(post.updated_at),
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...postRoutes];
 }
