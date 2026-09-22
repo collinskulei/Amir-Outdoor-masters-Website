@@ -101,7 +101,11 @@ export function PortfolioDialog({
           </div>
           <div>
             <Label htmlFor="pf-category">Category</Label>
-            <Select value={form.category_id ?? undefined} onValueChange={(v) => update("category_id", v)}>
+            <Select
+              items={categories.map((cat) => ({ value: cat.id, label: cat.name }))}
+              value={form.category_id}
+              onValueChange={(v) => update("category_id", v)}
+            >
               <SelectTrigger id="pf-category" className="mt-2 h-11 w-full">
                 <SelectValue placeholder="Choose a category" />
               </SelectTrigger>
@@ -116,7 +120,11 @@ export function PortfolioDialog({
           </div>
           <div>
             <Label htmlFor="pf-service">Service (optional)</Label>
-            <Select value={form.service_id ?? undefined} onValueChange={(v) => update("service_id", v)}>
+            <Select
+              items={services.map((s) => ({ value: s.id, label: s.name }))}
+              value={form.service_id}
+              onValueChange={(v) => update("service_id", v)}
+            >
               <SelectTrigger id="pf-service" className="mt-2 h-11 w-full">
                 <SelectValue placeholder="Choose a service" />
               </SelectTrigger>

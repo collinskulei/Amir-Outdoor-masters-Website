@@ -14,6 +14,7 @@ export function BookingStatusSelect({ id, status }: { id: string; status: Bookin
 
   return (
     <Select
+      items={bookingStatusLabels}
       value={status}
       disabled={pending}
       onValueChange={(value) => {

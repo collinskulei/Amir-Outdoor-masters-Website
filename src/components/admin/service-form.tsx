@@ -71,7 +71,8 @@ export function ServiceForm({
         <div>
           <Label htmlFor="category">Category</Label>
           <Select
-            value={form.category_id ?? undefined}
+            items={categories.map((c) => ({ value: c.id, label: c.name }))}
+            value={form.category_id}
             onValueChange={(v) => update("category_id", v)}
           >
             <SelectTrigger id="category" className="mt-2 h-11 w-full">
@@ -113,7 +114,11 @@ export function ServiceForm({
         <div className="grid grid-cols-2 gap-5">
           <div>
             <Label htmlFor="icon">Placeholder icon</Label>
-            <Select value={form.icon} onValueChange={(v) => update("icon", v ?? "Sprout")}>
+            <Select
+              items={ICON_OPTIONS.map((icon) => ({ value: icon, label: icon }))}
+              value={form.icon}
+              onValueChange={(v) => update("icon", v ?? "Sprout")}
+            >
               <SelectTrigger id="icon" className="mt-2 h-11 w-full">
                 <SelectValue />
               </SelectTrigger>

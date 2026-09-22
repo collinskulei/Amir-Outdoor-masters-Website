@@ -14,6 +14,7 @@ export function LeadStatusSelect({ id, status }: { id: string; status: LeadStatu
 
   return (
     <Select
+      items={leadStatusLabels}
       value={status}
       disabled={pending}
       onValueChange={(value) => {

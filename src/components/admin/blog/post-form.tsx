@@ -280,7 +280,11 @@ export function PostForm({
             <ImageUploadField label="Cover image" folder="blog" value={coverImageUrl} onChange={setCoverImageUrl} aspect="aspect-video" />
             <div>
               <Label htmlFor="category">Category</Label>
-              <Select value={categoryId ?? undefined} onValueChange={(v) => setCategoryId(v)}>
+              <Select
+                items={categories.map((c) => ({ value: c.id, label: c.name }))}
+                value={categoryId}
+                onValueChange={(v) => setCategoryId(v)}
+              >
                 <SelectTrigger id="category" className="mt-2 h-11 w-full">
                   <SelectValue placeholder="Choose a category" />
                 </SelectTrigger>
@@ -303,7 +307,11 @@ export function PostForm({
             </div>
             <div>
               <Label htmlFor="schema-type">Structured data type</Label>
-              <Select value={schemaType} onValueChange={(v) => setSchemaType(v as BlogSchemaType)}>
+              <Select
+                items={{ Article: "Article", BlogPosting: "Blog Posting", HowTo: "How-To", FAQPage: "FAQ Page" }}
+                value={schemaType}
+                onValueChange={(v) => setSchemaType(v as BlogSchemaType)}
+              >
                 <SelectTrigger id="schema-type" className="mt-2 h-11 w-full">
                   <SelectValue />
                 </SelectTrigger>

@@ -108,7 +108,11 @@ export function TestimonialDialog({ testimonial }: { testimonial?: TestimonialRo
           <div className="grid grid-cols-2 gap-4">
             <div>
               <Label htmlFor="t-rating">Rating</Label>
-              <Select value={String(form.rating)} onValueChange={(v) => update("rating", Number(v))}>
+              <Select
+                items={{ "5": "5 stars", "4": "4 stars", "3": "3 stars", "2": "2 stars", "1": "1 star" }}
+                value={String(form.rating)}
+                onValueChange={(v) => update("rating", Number(v))}
+              >
                 <SelectTrigger id="t-rating" className="mt-2 h-11 w-full">
                   <SelectValue />
                 </SelectTrigger>

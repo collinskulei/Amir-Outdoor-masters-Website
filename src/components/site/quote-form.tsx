@@ -57,7 +57,12 @@ export function QuoteForm({
       </div>
       <div>
         <Label htmlFor="service_id">Service needed</Label>
-        <Select value={serviceId} onValueChange={(v) => setServiceId(v ?? "")} name="service_id">
+        <Select
+          items={services.map((s) => ({ value: s.id, label: s.name }))}
+          value={serviceId}
+          onValueChange={(v) => setServiceId(v ?? "")}
+          name="service_id"
+        >
           <SelectTrigger id="service_id" className="mt-2 h-11 w-full">
             <SelectValue placeholder="Choose a service" />
           </SelectTrigger>
