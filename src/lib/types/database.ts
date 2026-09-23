@@ -97,6 +97,14 @@ export interface BookingRow {
   created_at: string;
 }
 
+export interface PushSubscriptionRow {
+  id: string;
+  endpoint: string;
+  p256dh: string;
+  auth: string;
+  created_at: string;
+}
+
 export type BlogPostStatus = "draft" | "published";
 export type BlogSchemaType = "Article" | "BlogPosting" | "HowTo" | "FAQPage";
 
@@ -160,6 +168,7 @@ export interface Database {
       bookings: Table<BookingRow>;
       blog_categories: Table<BlogCategoryRow>;
       blog_posts: Table<BlogPostRow>;
+      push_subscriptions: Table<PushSubscriptionRow>;
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;

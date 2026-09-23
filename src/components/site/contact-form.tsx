@@ -1,12 +1,13 @@
 "use client";
 
 import { useActionState, useEffect, useRef } from "react";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { PartyPopper, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { submitLead, type LeadFormState } from "@/lib/actions/leads";
+import { fireConfetti } from "@/lib/confetti";
 
 const initialState: LeadFormState = { status: "idle" };
 
@@ -15,13 +16,16 @@ export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    if (state.status === "success") formRef.current?.reset();
+    if (state.status === "success") {
+      formRef.current?.reset();
+      fireConfetti();
+    }
   }, [state.status]);
 
   if (state.status === "success") {
     return (
       <div className="flex flex-col items-center gap-3 rounded-2xl bg-green-50 p-10 text-center">
-        <CheckCircle2 className="h-10 w-10 text-green-600" />
+        <PartyPopper className="h-10 w-10 text-green-600" />
         <p className="text-base font-medium text-pine-950">{state.message}</p>
       </div>
     );
@@ -35,8 +39,8 @@ export function ContactForm() {
           <Input id="name" name="name" required className="mt-2 h-11" />
         </div>
         <div>
-          <Label htmlFor="phone">Phone (optional)</Label>
-          <Input id="phone" name="phone" type="tel" className="mt-2 h-11" />
+          <Label htmlFor="phone">Phone</Label>
+          <Input id="phone" name="phone" type="tel" required placeholder="0712 345 678" className="mt-2 h-11" />
         </div>
       </div>
       <div>

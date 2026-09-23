@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Logo } from "@/components/site/logo";
 import { ADMIN_NAV } from "@/components/admin/nav-items";
+import { PushNotificationToggle } from "@/components/admin/push-notification-toggle";
 import { signOut } from "@/lib/actions/auth";
 import { cn } from "@/lib/utils";
 
@@ -56,6 +57,7 @@ export function AdminTopbar({ email }: { email?: string | null }) {
       <div className="hidden lg:block" />
 
       <div className="flex items-center gap-4">
+        <PushNotificationToggle />
         {email && <span className="text-sm text-muted-foreground">{email}</span>}
         <form action={signOut}>
           <Button type="submit" variant="ghost" size="sm" className="gap-1.5">

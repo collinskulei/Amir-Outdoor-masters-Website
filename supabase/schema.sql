@@ -183,6 +183,18 @@ create table if not exists blog_posts (
 create index if not exists blog_posts_status_published_at_idx on blog_posts (status, published_at desc);
 
 -- ---------------------------------------------------------------------------
+-- push_subscriptions — browser/phone push targets registered from the admin
+-- dashboard (Web Push, VAPID-based). Notified on new leads and bookings.
+-- ---------------------------------------------------------------------------
+create table if not exists push_subscriptions (
+  id uuid primary key default gen_random_uuid(),
+  endpoint text not null unique,
+  p256dh text not null,
+  auth text not null,
+  created_at timestamptz not null default now()
+);
+
+-- ---------------------------------------------------------------------------
 -- Row Level Security
 -- ---------------------------------------------------------------------------
 alter table site_settings enable row level security;
@@ -194,6 +206,7 @@ alter table leads enable row level security;
 alter table bookings enable row level security;
 alter table blog_categories enable row level security;
 alter table blog_posts enable row level security;
+alter table push_subscriptions enable row level security;
 
 -- Public (anon) can read published marketing content.
 create policy "public read site_settings" on site_settings for select using (true);
@@ -219,6 +232,7 @@ create policy "admin all leads" on leads for all using (auth.role() = 'authentic
 create policy "admin all bookings" on bookings for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
 create policy "admin all blog_categories" on blog_categories for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
 create policy "admin all blog_posts" on blog_posts for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
+create policy "admin all push_subscriptions" on push_subscriptions for all using (auth.role() = 'authenticated') with check (auth.role() = 'authenticated');
 
 -- ---------------------------------------------------------------------------
 -- Storage — public "media" bucket for logo, hero backgrounds, service &
